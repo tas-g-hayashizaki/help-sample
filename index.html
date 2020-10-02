@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>ヘルプ画面サンプル</title>
+    <style type="text/css">
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .grovalNavigation {
+            height: 70px;
+            text-align: center;
+            background-color: #000080;
+            color: #fff;
+        }
+
+        main {
+            min-height: 80vh;
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .content {
+            flex: 1;
+            background-color: #F8F8FF;
+            text-align: center;
+            margin-left: 10px;
+        }
+
+        .localNavigation {
+            width: 300px;
+            text-align: center;
+            background-color: #EEEEEE;
+        }
+
+        .footer {
+            margin-top: 10px;
+            height: 70px;
+            text-align: center;
+            background-color: #eee;
+            display: flex;
+        }
+
+        .f1 {
+            width: 50%;
+            background-color: #003399;
+            color: #fff;
+        }
+
+        .f2 {
+            width: 50%;
+        }
+
+        /* モーダルCSSここから */
+        .modalArea {
+            visibility: hidden;
+            /* displayではなくvisibility */
+            opacity: 0;
+            position: fixed;
+            z-index: 10;
+            /* サイトによってここの数値は調整 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: .4s;
+        }
+
+        .modalBg {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(30, 30, 30, 0.9);
+        }
+
+        .modalWrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            height: 90%;
+            padding: 10px 30px;
+            background-color: #fff;
+        }
+
+        .modalContents {
+            width: 98%;
+            height: 100%;
+        }
+
+        .closeModal {
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            cursor: pointer;
+            font-size: 30px;
+        }
+
+        .is-show {
+            /* モーダル表示用クラス */
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* モーダルCSSここまで */
+
+
+        /* 以下ボタンスタイル */
+        button {
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #282828;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        iframe {
+            /* border: none; */
+            width: 100%;
+            height: 100%;
+        }
+
+        /* #openModal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        } */
+    </style>
+    <script type="text/javascript">
+
+        function init() {
+            const modalArea = document.getElementById('modalArea');
+            const openModal = document.getElementById('openModal');
+            const closeModal = document.getElementById('closeModal');
+            const modalBg = document.getElementById('modalBg');
+            const toggle = [openModal, closeModal, modalBg];
+
+            for (let i = 0, len = toggle.length; i < len; i++) {
+                toggle[i].addEventListener('click', function () {
+                    modalArea.classList.toggle('is-show');
+                }, false);
+            }
+        };
+
+        function help() {
+            window.open('https://www.sejuku.net/blog/', null, 'width=500,toolbar=yes,menubar=yes,scrollbars=yes');
+        }
+
+
+    </script>
+
+</head>
+
+<body onload="init()">
+    <header class="grovalNavigation">
+        <p>受信料契約</p>
+    </header>
+    <main>
+        <div class="localNavigation">
+            <p>ナビゲーション</p>
+        </div>
+        <div class="content">
+            <p>コンテンツ</p>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="f1">電子契約</div>
+        <div class="f2">よくある質問　<button id="openModal">Open modal</button></div>
+    </footer>
+    <!-- モーダルエリアここから -->
+    <section id="modalArea" class="modalArea">
+        <div id="modalBg" class="modalBg"></div>
+        <div class="modalWrapper">
+            <div class="modalContents">
+                <iframe id="inlineFrameExample" title="Inline Frame Example" src="help_1.html"></iframe>
+            </div>
+            <div id="closeModal" class="closeModal">
+                ×
+            </div>
+        </div>
+    </section>
+    <!-- モーダルエリアここまで -->
+</body>
+
+</html>
